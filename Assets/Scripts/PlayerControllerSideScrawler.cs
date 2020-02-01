@@ -7,11 +7,11 @@ using UnityEngine.PlayerLoop;
 public class PlayerControllerSideScrawler : PlayerController
 {
     [SerializeField]
-    private GameObject FeetCollider;
+    private GameObject FeetCollider = null;
     [SerializeField]
-    private GameObject HeadCollider;
+    private GameObject HeadCollider = null;
     [SerializeField]
-    private Collider2D CrouchCollider;
+    private Collider2D CrouchCollider = null;
 
     [SerializeField]
     protected SpriteRenderer SideRenderer;
@@ -20,7 +20,7 @@ public class PlayerControllerSideScrawler : PlayerController
     private CircleCollider2D feet_collider;
     private CircleCollider2D head_collider;
 
-    private void Awake()
+    new private void Awake()
     {
         base.Awake();
         is_facing = Faces.Right;

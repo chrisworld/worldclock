@@ -6,9 +6,9 @@ using UnityEngine.PlayerLoop;
 public class PlayerControllerAdventure : PlayerController
 {
     [SerializeField]
-    private SpriteRenderer FrontRenderer;
+    private SpriteRenderer FrontRenderer = null;
     [SerializeField]
-    private SpriteRenderer SideRenderer;
+    private SpriteRenderer SideRenderer = null;
 
     private Animator FrontAnimator;
     private Animator SideAnimator;
@@ -21,9 +21,9 @@ public class PlayerControllerAdventure : PlayerController
     private float HeadColliderRadius = 0.5f;
 
     [SerializeField]
-    private Collider2D FullSizeCollider;
+    private Collider2D FullSizeCollider = null;
     [SerializeField]
-    private Collider2D SmallSizeCollider;
+    private Collider2D SmallSizeCollider = null;
 
     private float ground_collide_radius;
     private float head_collide_radius;
@@ -31,7 +31,7 @@ public class PlayerControllerAdventure : PlayerController
     private float ground_collide_pos;
     private float head_collide_pos;
 
-    private void Awake()
+    new private void Awake()
     {
         base.Awake();
         ground_collide_radius = transform.localScale.x * FeetColliderRadius;

@@ -7,7 +7,7 @@ using UnityEngine.PlayerLoop;
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField]
-    private PlayerController player_controler;
+    private PlayerController player_controler = null;
 
     private float move_left_right = 0.0f;
     private float move_up_down = 0.0f;

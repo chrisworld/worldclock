@@ -5,7 +5,7 @@ using UnityEngine;
 public class FollowObject : MonoBehaviour
 {
     [SerializeField]
-    private Transform ObjectToFollow;
+    private Transform ObjectToFollow = null;
 
     [Range(0, 1)]
     [SerializeField]
