@@ -206,4 +206,10 @@ public class WorldClock : MonoBehaviour
     // extend time
     max_time_actual += add_repair_time;
   }
+
+  // activate parts
+  public void ShowWorldClock(bool activate)
+  {
+    this.gameObject.transform.GetChild(0).gameObject.SetActive(activate);
+  }
 }
