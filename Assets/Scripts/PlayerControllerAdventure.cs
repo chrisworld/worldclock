@@ -5,6 +5,14 @@ using UnityEngine.PlayerLoop;
 
 public class PlayerControllerAdventure : PlayerController
 {
+    [SerializeField]
+    private SpriteRenderer FrontRenderer;
+    [SerializeField]
+    private SpriteRenderer SideRenderer;
+
+    private Animator FrontAnimator;
+    private Animator SideAnimator;
+
     [Range(0, 1)]
     [SerializeField]
     private float FeetColliderRadius = 0.5f;
@@ -30,6 +38,10 @@ public class PlayerControllerAdventure : PlayerController
         head_collide_radius = transform.localScale.x * HeadColliderRadius;
         ground_collide_pos = (transform.localScale.y * 0.5f) - FeetColliderRadius;
         head_collide_pos = (transform.localScale.y * 0.5f) - HeadColliderRadius;
+
+        is_facing = Faces.Streight;
+        FrontRenderer.enabled = true;
+        SideRenderer.enabled = false;
     }
 
     private void FixedUpdate()

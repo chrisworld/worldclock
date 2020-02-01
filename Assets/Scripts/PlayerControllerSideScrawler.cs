@@ -13,6 +13,10 @@ public class PlayerControllerSideScrawler : PlayerController
     [SerializeField]
     private Collider2D CrouchCollider;
 
+    [SerializeField]
+    protected SpriteRenderer SideRenderer;
+    protected Animator SideAnimator;
+
     protected bool can_standup;
 
     private void Awake()
@@ -25,11 +29,17 @@ public class PlayerControllerSideScrawler : PlayerController
         head_collider.DoEnter += HeadDoEnter;
         head_collider.DoExit += HeadDoExit;
         can_standup = true;
+
+        is_facing = Faces.Right;
+        SideRenderer.enabled = true;
+        SideAnimator = SideRenderer.GetComponent<Animator>();
     }
 
     private void FeetDoEnter(Collider2D col)
     {
-        on_ground = (GroundMask == (GroundMask | (1 << col.gameObject.layer)) && col.gameObject != gameObject);
+        var new_val = (GroundMask == (GroundMask | (1 << col.gameObject.layer)) && col.gameObject != gameObject);
+        SideAnimator.SetBool("Is_Jumping", on_ground || !new_val);
+        on_ground = new_val;
     }
 
     private void FeetDoExit(Collider2D col)
@@ -71,33 +81,24 @@ public class PlayerControllerSideScrawler : PlayerController
         Vector3 targetVelocity = new Vector2(move_left_right * MovementSpeed, player_physics_body.velocity.y);
         player_physics_body.velocity = Vector3.SmoothDamp(player_physics_body.velocity, targetVelocity, ref previous_velocity, MovementSmoothing);
 
-        if (Math.Abs(move_left_right) < 0.02f && is_facing != Faces.Streight)
+        SideAnimator.SetBool("Is_Walking", Math.Abs(move_left_right) > 0.0001f);
+
+        Vector3 theScale = transform.localScale;
+        if (move_left_right > 0 && is_facing != Faces.Right)
         {
-            //Debug.Log(String.Format("stright"));
-            FrontRenderer.enabled = true;
-            SideRenderer.enabled = false;
+            is_facing = Faces.Right;
+            theScale.x *= -1;
         }
-        else
+        else if (move_left_right < 0 && is_facing != Faces.Left)
         {
-            //Debug.Log(String.Format("side"));
-            FrontRenderer.enabled = false;
-            SideRenderer.enabled = true;
-            Vector3 theScale = transform.localScale;
-            if (move_left_right > 0 && is_facing != Faces.Right)
-            {
-                is_facing = Faces.Right;
-                theScale.x *= -1;
-            }
-            else if (move_left_right < 0 && is_facing != Faces.Left)
-            {
-                is_facing = Faces.Left;
-                theScale.x *= -1;
-            }
-            transform.localScale = theScale;
+            is_facing = Faces.Left;
+            theScale.x *= -1;
         }
+        transform.localScale = theScale;
 
         if (on_ground && jump && !crouch)
         {
+            SideAnimator.SetBool("Is_Jumping", true);
             on_ground = false;
             player_physics_body.AddForce(new Vector2(0f, JumpStrenght));
         }
