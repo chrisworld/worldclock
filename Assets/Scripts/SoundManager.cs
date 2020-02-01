@@ -13,13 +13,43 @@ public class SoundManager : MonoBehaviour
   public AudioSource tick8;
   public AudioSource tick16;
 
-  // door
+  // sound fx
   public AudioSource door;
+  public AudioSource footsteps;
+  public AudioSource rewind;
 
   // play door sound
   public void PlayDoorSound()
   {
     door.Play(0);
+  }
+
+  // play footstep sound
+  public void PlayFootstepSound()
+  {
+    footsteps.Play(0);
+  }
+
+  // play footstep sound
+  public void PlayFootstepCrouchSound()
+  {
+    footsteps.pitch = 1.0f + Random.Range(-0.1f, 0.1f);
+    footsteps.Play(0);
+  }
+
+  // play rewind sound
+  public void PlayRewindSound()
+  {
+    rewind.pitch = 1.0f + Random.Range(-0.1f, 0.1f);
+    rewind.loop = true;
+    rewind.Play(0);
+  }
+
+  // stop rewind sound
+  public void StopRewindSound()
+  {
+    rewind.loop = false;
+    rewind.Stop();
   }
 
   

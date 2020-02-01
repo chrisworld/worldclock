@@ -31,6 +31,8 @@ public class PlayerControllerAdventure : PlayerController
     private float ground_collide_pos;
     private float head_collide_pos;
 
+    private float footstep_time;
+
     new private void Awake()
     {
         base.Awake();
@@ -45,6 +47,8 @@ public class PlayerControllerAdventure : PlayerController
 
         // on ground always true
         on_ground = true;
+
+        footstep_time = 0;
     }
 
     //private void FixedUpdate()
@@ -77,6 +81,14 @@ public class PlayerControllerAdventure : PlayerController
                 move_left_right *= CrouchSpeedModifier;
                 FullSizeCollider.enabled = false;
                 SmallSizeCollider.enabled = true;
+
+                // play footstep sound
+                footstep_time += Time.deltaTime;
+                if (footstep_time >= 0.5)
+                {
+                    GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayFootstepCrouchSound();
+                    footstep_time = 0;
+                }
             }
             else
             {
