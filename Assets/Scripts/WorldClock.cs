@@ -111,6 +111,19 @@ public class WorldClock : MonoBehaviour
 
   }
 
+  // slot repair
+  public void PutItemToSlot(int id)
+  {
+    RepairSlot[] repair_slots = GetComponentsInChildren<RepairSlot>();
+    foreach(RepairSlot rs in repair_slots)
+    {
+      if (id == rs.slot_id)
+      {
+        rs.Repair();
+      }
+    }
+  }
+
   // end game
   private void EndGame()
   {

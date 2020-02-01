@@ -15,6 +15,9 @@ public class InventorySystem : MonoBehaviour
   private int carry_item_id = 0;
   private bool carry_flag = false;
 
+  // world clock reference
+  private GameObject world_clock;
+
   // Start is called before the first frame update
   void Start()
   {
@@ -22,6 +25,9 @@ public class InventorySystem : MonoBehaviour
     clock_inventory = new int[amount_repair_obj];
     world_inventory = new int[amount_repair_obj];
     ResetInventory();
+
+    // get references
+    world_clock = GameObject.Find("WorldClock");
   }
 
   // Update is called once per frame
@@ -45,12 +51,13 @@ public class InventorySystem : MonoBehaviour
       world_inventory[wi] = 0;
     }
 
+    // reset
     carry_flag = false;
     carry_item_id = 0;
   }
 
   // take item from world
-  public void TakeItemFromWorld(int id)
+  public bool TakeItemFromWorld(int id)
   {
     // check if player already carry something
     if (!carry_flag)
@@ -58,23 +65,40 @@ public class InventorySystem : MonoBehaviour
       world_inventory[id] = 0;
       carry_item_id = id;
       carry_flag = true;
+      return true;
     }
+    return false;
   }
 
   // put item into worldclock
-  public void PlaceItemIntoClock()
+  public bool PlaceItemIntoClock()
   {
     // check carry
     if (carry_flag)
     {
-      // check corresponding id
+      // check corresponding id is not set
       if (clock_inventory[carry_item_id] == 0)
       {
         // set things
         clock_inventory[carry_item_id] = 1;
         carry_flag = false;
-        GameObject.Find("WorldClock").GetComponent<WorldClock>().AddRepairTime();
+        world_clock.GetComponent<WorldClock>().AddRepairTime();
+        world_clock.GetComponent<WorldClock>().PutItemToSlot(carry_item_id);
+        return true;
       }
     }
+    return false;
+  }
+
+  // get carry flag
+  public bool GetCarryFlag()
+  {
+    return carry_flag;
+  }
+
+  // get carry item id
+  public int GetCarryItemId()
+  {
+    return carry_item_id;
   }
 }
