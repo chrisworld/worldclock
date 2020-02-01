@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 436663611}
   - component: {fileID: 436663613}
   - component: {fileID: 436663612}
+  - component: {fileID: 4803099454511312410}
   m_Layer: 0
   m_Name: Rewinder
   m_TagString: Untagged
@@ -27,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 436663609}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.006, y: 2.9924, z: 0}
-  m_LocalScale: {x: 2.96156, y: 6.241953, z: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5728979828111673142}
   m_RootOrder: 2
@@ -72,8 +73,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 08cdba8cc54ead24e92e3d230fc5da64, type: 3}
-  m_Color: {r: 0.8836486, g: 0.8867924, b: 0.40993237, a: 1}
+  m_Sprite: {fileID: 1947117504285552034, guid: ed8060363cc20ce4da9eb895b4cacc78,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b0992ccb63c95845833971a8de6de58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerInRewindTrigger: 0
 --- !u!61 &436663612
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -112,15 +115,34 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 1, y: 2}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 0.3, y: 2}
   m_EdgeRadius: 0
+--- !u!95 &4803099454511312410
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436663609}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c19794208079b0f49922dc3fdb5786cb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &484171492
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +182,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484171492}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -194,7 +216,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 5508725064705088119, guid: 71d12bdf6f2b0534287b6937d07a4a81,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -256,7 +278,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742420273}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -290,7 +312,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_Sprite: {fileID: 6099581493293703690, guid: 71d12bdf6f2b0534287b6937d07a4a81,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -352,7 +374,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162338291}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -386,7 +408,7 @@ SpriteRenderer:
   m_SortingOrder: 3
   m_Sprite: {fileID: -5428206428529569624, guid: 71d12bdf6f2b0534287b6937d07a4a81,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -603,7 +625,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899972097}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -637,7 +659,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 6761164967045977113, guid: 71d12bdf6f2b0534287b6937d07a4a81,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -819,6 +841,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a94ec6c854321d1479729cf4e2282c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RewindSpeed: 6
+  DiskreteTickModifier: 2
   ClockHand: {fileID: 5344820338480291838}
   Pendulum: {fileID: 5344820338659997018}
   amount_of_repairs: 5
@@ -849,13 +873,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5344820338480291838}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5344820338865317964}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5344820338480291328
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -898,7 +922,7 @@ SpriteRenderer:
   m_Sprite: {fileID: 444453706895133644, guid: 0653c4fa97deaaa4986ac12b8e08a5f2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 1
+  m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.22, y: 2.68}
   m_AdaptiveModeThreshold: 0.5

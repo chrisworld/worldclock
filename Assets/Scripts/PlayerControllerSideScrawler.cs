@@ -30,7 +30,7 @@ public class PlayerControllerSideScrawler : PlayerController
     private CanClimbBehaviour can_climb;
     private float climb_change_timer;
 
-    new private void Awake()
+    private void Awake()
     {
         base.Awake();
         is_facing = Faces.Right;

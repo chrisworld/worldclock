@@ -7,7 +7,6 @@ public class CanClimbBehaviour : MonoBehaviour
     [SerializeField] public bool CanClimb;
     [SerializeField] protected LayerMask ClimbMask;
 
-    [SerializeField]
     private int climb_count = 0;
 
     private void OnTriggerEnter2D(Collider2D col)
