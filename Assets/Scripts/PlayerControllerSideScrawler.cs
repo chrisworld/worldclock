@@ -16,7 +16,7 @@ public class PlayerControllerSideScrawler : PlayerController
     private Collider2D CrouchCollider = null;
 
     [SerializeField]
-    private Collider2D LadderCollider;
+    private Collider2D LadderCollider = null;
     [Range(0, 1)]
     [SerializeField]
     protected float ClimbSpeedModifier = 0.01f;
