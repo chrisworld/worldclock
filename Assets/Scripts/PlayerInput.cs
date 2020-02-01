@@ -17,7 +17,9 @@ public class PlayerInput : MonoBehaviour
     private void Update()
     {
         move_left_right = Input.GetAxisRaw("Horizontal");
+        move_left_right = Math.Abs(move_left_right) < 0.02 ? 0 : move_left_right;
         move_up_down = Input.GetAxisRaw("Vertical");
+        move_up_down = Math.Abs(move_up_down) < 0.02 ? 0 : move_up_down;
         jump = Input.GetButtonDown("Jump") || jump;
         crouch = Input.GetButtonDown("Crouch") || !Input.GetButtonUp("Crouch") && crouch;
     }

@@ -72,7 +72,6 @@ public class WorldClock : MonoBehaviour
       CalcPendulumAngle();
     }
 
-
     // update rotations
     if (current_time > last_update_time + 1.0f)
     {

@@ -19,11 +19,6 @@ public abstract class PlayerController : MonoBehaviour
     [SerializeField]
     protected float MovementSmoothing = 0.1f;
 
-    [SerializeField]
-    protected SpriteRenderer FrontRenderer;
-    [SerializeField]
-    protected SpriteRenderer SideRenderer;
-
     protected Rigidbody2D player_physics_body;
     protected bool on_ground;
 
@@ -41,9 +36,6 @@ public abstract class PlayerController : MonoBehaviour
     protected void Awake()
     {
         player_physics_body = GetComponent<Rigidbody2D>();
-        is_facing = Faces.Streight;
-        FrontRenderer.enabled = true;
-        SideRenderer.enabled = false;
     }
 
     public abstract void Move(float move_left_right, float move_up_down, bool crouch, bool jump);
