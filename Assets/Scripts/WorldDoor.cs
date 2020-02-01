@@ -20,6 +20,7 @@ public class WorldDoor : MonoBehaviour
       // go to world
       if(Input.GetAxisRaw("Vertical") != 0)
       {
+        GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayDoorSound();
         GameObject.Find("GameLogic").GetComponent<GameLogic>().LoadWorld(world_id);
       }
     }

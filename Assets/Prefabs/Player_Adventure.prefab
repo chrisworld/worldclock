@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4647438161688053631}
   - component: {fileID: 4647438161688053630}
-  - component: {fileID: 4647438161688053625}
   m_Layer: 10
   m_Name: Feet
   m_TagString: Untagged
@@ -48,18 +47,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!114 &4647438161688053625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4647438161688053624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4ae9a0bd3e507d48b1c611128178fbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4647438161990322442
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +258,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -8161972448975284119, guid: adfd22718c7854649aea5f4ffd7a6b31,
+  m_Sprite: {fileID: 7491572148825274932, guid: 3e8782cdd81611d428c95d1307b6761c,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -293,7 +280,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4647438162180389242}
   - component: {fileID: 4647438162180389237}
-  - component: {fileID: 4647438162180389236}
   m_Layer: 10
   m_Name: Head
   m_TagString: Untagged
@@ -331,18 +317,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!114 &4647438162180389236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4647438162180389239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4ae9a0bd3e507d48b1c611128178fbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4647438162258360478
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,13 +388,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -4821201859048845533, guid: adfd22718c7854649aea5f4ffd7a6b31,
+  m_Sprite: {fileID: 7442368852131610188, guid: 3e8782cdd81611d428c95d1307b6761c,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
