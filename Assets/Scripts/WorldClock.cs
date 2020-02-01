@@ -16,12 +16,13 @@ public class WorldClock : MonoBehaviour
   public float max_time_end = 10 * 60;
   public float end_screen_time = 5;
 
-  // pendulum
-  public float pendulum_speed = 1.5f;
-
+  private float max_time_actual;
   private float add_repair_time;
   private float current_time;
   private float last_update_time;
+
+  // pendulum
+  public float pendulum_speed = 1.5f;
 
   // rotations
   private float rot_step;
@@ -51,14 +52,14 @@ public class WorldClock : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    // init stuff
-    NewGame();
-
     // repair time to add for each repair object
     add_repair_time = max_time_end / amount_of_repairs;
 
     // rotation step each secod
     rot_step = 360 / max_time_end;
+
+    // new game
+    NewGame();
   }
 
   // Update is called once per frame
@@ -80,6 +81,9 @@ public class WorldClock : MonoBehaviour
 
       // actually rotate
       ClockHand.transform.Rotate(0.0f, 0.0f, rot_step, Space.Self);
+
+      // Debug
+      //Debug.Log("max_time_actual: " + max_time_actual);
     }
 
 
@@ -94,9 +98,15 @@ public class WorldClock : MonoBehaviour
     else
     {
       // end game
-      if (current_time > max_time_end + 0.5f)
+      if (current_time > max_time_actual + 0.5f)
       {
         EndGame();
+      }
+
+      // win condition
+      if (max_time_actual >= max_time_end && current_time <= 0.5f)
+      {
+        WinGame();
       }
     }
 
@@ -109,6 +119,21 @@ public class WorldClock : MonoBehaviour
     GameObject.Find("GameLogic").GetComponent<GameLogic>().LoadEndGame();
     new_game = true;
     current_time = 0;
+
+    // init max time
+    max_time_actual = 0;
+  }
+
+  // win
+  private void WinGame()
+  {
+    Debug.Log("Won -> credits");
+    GameObject.Find("GameLogic").GetComponent<GameLogic>().LoadWinGame();
+    new_game = true;
+    current_time = 0;
+
+    // init max time
+    max_time_actual = 0;
   }
 
   // go to start screen
@@ -117,8 +142,8 @@ public class WorldClock : MonoBehaviour
     Debug.Log("start screen");
     GameObject.Find("GameLogic").GetComponent<GameLogic>().LoadStartScreen();
     new_game = false;
-    current_time = 0;
     timer_active = false;
+    current_time = 0;
   }
 
   // new game
@@ -127,13 +152,18 @@ public class WorldClock : MonoBehaviour
     Debug.Log("new game");
 
     // init stuff
-    current_time = 0;
-    last_update_time = 0;
     new_game = false;
     timer_active = true;
 
-    // reset clockhand
-    ClockHand.transform.localRotation = Quaternion.Euler(180f, 0, 0);
+    // init max time
+    max_time_actual = 0;
+
+    // first repair
+    AddRepairTime();
+
+    // firs rewind
+    Rewind();
+
   }
 
   // pendulum movement
@@ -141,5 +171,27 @@ public class WorldClock : MonoBehaviour
   {
     // update rotation
     Pendulum.transform.localRotation = Quaternion.Euler(0, 0, 20f * Mathf.Cos(pendulum_speed * current_time));
+  }
+
+  // rewind
+  public void Rewind()
+  {
+    Debug.Log("rewind");
+    
+    // reset clockhand
+    ClockHand.transform.localRotation = Quaternion.Euler(180f, 0, -max_time_actual * 360 / max_time_end);
+
+    // reset times
+    current_time = 0;
+    last_update_time = 0;
+  }
+
+  // add repair time
+  public void AddRepairTime()
+  {
+    Debug.Log("Add repair time");
+
+    // extend time
+    max_time_actual += add_repair_time;
   }
 }

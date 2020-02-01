@@ -82,4 +82,10 @@ public class GameLogic : MonoBehaviour
     SceneManager.LoadScene("end_scene");
   }
 
+  // end game scene
+  public void LoadWinGame()
+  {
+    SceneManager.LoadScene("win_scene");
+  }
+
 }
