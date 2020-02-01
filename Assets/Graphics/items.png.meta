@@ -1,19 +1,49 @@
 fileFormatVersion: 2
-guid: adfd22718c7854649aea5f4ffd7a6b31
+guid: 71d12bdf6f2b0534287b6937d07a4a81
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3811653380643207702
-    second: human000_0
+      213: 6761164967045977113
+    second: items_0
   - first:
-      213: -4821201859048845533
-    second: human000_1
+      213: 5508725064705088119
+    second: items_1
   - first:
-      213: -8161972448975284119
-    second: human000_2
+      213: -68751727340038015
+    second: items_2
   - first:
-      213: -991065297917073562
-    second: human000_3
+      213: 6099581493293703690
+    second: items_3
+  - first:
+      213: -5428206428529569624
+    second: items_4
+  - first:
+      213: -7833671090200325546
+    second: items_5
+  - first:
+      213: 5860025163644826426
+    second: items_6
+  - first:
+      213: -7583409310137716746
+    second: items_7
+  - first:
+      213: 980155311395259703
+    second: items_8
+  - first:
+      213: -732356172534689064
+    second: items_9
+  - first:
+      213: 8132948862792318974
+    second: items_10
+  - first:
+      213: 2614870373251885436
+    second: items_11
+  - first:
+      213: -2693009140137883590
+    second: items_12
+  - first:
+      213: -956252262595852801
+    second: items_13
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -98,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: human000_0
+      name: items_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 280
-        width: 28
-        height: 56
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61ab7200e86b5e430800000000000000
-      internalID: 3811653380643207702
+      spriteID: 914579027bb74dd50800000000000000
+      internalID: 6761164967045977113
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: human000_1
+      name: items_1
       rect:
         serializedVersion: 2
-        x: 28
-        y: 280
-        width: 28
-        height: 56
+        x: 112
+        y: 224
+        width: 112
+        height: 112
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32fc0f8f376a71db0800000000000000
-      internalID: -4821201859048845533
+      spriteID: 77a9907824ce27c40800000000000000
+      internalID: 5508725064705088119
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: human000_2
+      name: items_2
       rect:
         serializedVersion: 2
-        x: 56
-        y: 280
-        width: 28
-        height: 56
+        x: 0
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9689d483d49dabe80800000000000000
-      internalID: -8161972448975284119
+      spriteID: 188d3321baebb0ff0800000000000000
+      internalID: -68751727340038015
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: human000_3
+      name: items_3
       rect:
         serializedVersion: 2
-        x: 84
-        y: 280
-        width: 28
-        height: 56
+        x: 112
+        y: 112
+        width: 112
+        height: 112
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,8 +205,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 667af68cc570f32f0800000000000000
-      internalID: -991065297917073562
+      spriteID: a02615a1d0116a450800000000000000
+      internalID: 6099581493293703690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: items_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 112
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a0d00c53032ba4b0800000000000000
+      internalID: -5428206428529569624
       vertices: []
       indices: 
       edges: []

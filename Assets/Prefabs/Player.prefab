@@ -96,6 +96,8 @@ MonoBehaviour:
   FeetCollider: {fileID: 389255750055694412}
   HeadCollider: {fileID: 389255750637121091}
   CrouchCollider: {fileID: 0}
+  LadderCollider: {fileID: 0}
+  ClimbSpeedModifier: 0.01
   SideRenderer: {fileID: 389255750693367723}
 --- !u!58 &389255749888171580
 CircleCollider2D:
@@ -420,14 +422,14 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: -4821201859048845533, guid: adfd22718c7854649aea5f4ffd7a6b31,
+  m_SortingOrder: 50
+  m_Sprite: {fileID: 7491572148825274932, guid: 3e8782cdd81611d428c95d1307b6761c,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
