@@ -6,7 +6,7 @@ public class WorldClock : MonoBehaviour
 { 
 
   // Gameobjects
-  public GameObject ClockArm;
+  public GameObject ClockHand;
   public GameObject Pendulum;
 
   // repairs
@@ -15,6 +15,9 @@ public class WorldClock : MonoBehaviour
   // times
   public float max_time_end = 10 * 60;
   public float end_screen_time = 5;
+
+  // pendulum
+  public float pendulum_speed = 1.5f;
 
   private float add_repair_time;
   private float current_time;
@@ -65,6 +68,7 @@ public class WorldClock : MonoBehaviour
     {
       // update time
       current_time += Time.deltaTime; 
+      CalcPendulumAngle();
     }
 
 
@@ -75,7 +79,7 @@ public class WorldClock : MonoBehaviour
       last_update_time = current_time;
 
       // actually rotate
-      ClockArm.transform.Rotate(0.0f, 0.0f, rot_step, Space.Self);
+      ClockHand.transform.Rotate(0.0f, 0.0f, rot_step, Space.Self);
     }
 
 
@@ -90,7 +94,7 @@ public class WorldClock : MonoBehaviour
     else
     {
       // end game
-      if (current_time > max_time_end)
+      if (current_time > max_time_end + 0.5f)
       {
         EndGame();
       }
@@ -127,5 +131,15 @@ public class WorldClock : MonoBehaviour
     last_update_time = 0;
     new_game = false;
     timer_active = true;
+
+    // reset clockhand
+    ClockHand.transform.localRotation = Quaternion.Euler(180f, 0, 0);
+  }
+
+  // pendulum movement
+  private void CalcPendulumAngle()
+  {
+    // update rotation
+    Pendulum.transform.localRotation = Quaternion.Euler(0, 0, 20f * Mathf.Cos(pendulum_speed * current_time));
   }
 }
