@@ -4,8 +4,17 @@ using UnityEngine.SceneManagement;
 public class GameLogic : MonoBehaviour
 {
 
+  // main scene
+  public string main_scene = "clock_scene";
+
+  // all the world scenes
+  public string[] world_scene;
+
   // timer of holding esc for quit
   private float quit_time = 0;
+
+  // spawn player
+  private int spawn_player_door = 0;
 
 
   // awake
@@ -59,6 +68,24 @@ public class GameLogic : MonoBehaviour
         }
       }
     }
+
+    // spawn player to corresponding door position
+    if (spawn_player_door != 0)
+    {
+      // spawn
+      GameObject player = GameObject.FindGameObjectsWithTag("Player")[0];
+      
+      if (player != null)
+      {
+        GameObject[] doors = GameObject.FindGameObjectsWithTag("world_door");
+        if (doors.Length >= spawn_player_door-1)
+        {
+          // set player pos to door
+          //player.transform.position = doors[spawn_player_door-1].transform.position();
+          spawn_player_door = 0;
+        }
+      }
+    }
   }
 
   // start game scene
@@ -73,7 +100,7 @@ public class GameLogic : MonoBehaviour
     {
       GameObject.Find("WorldClock").GetComponent<WorldClock>().NewGame();
     }
-    SceneManager.LoadScene("clock_scene");
+    SceneManager.LoadScene(main_scene);
   }
 
   // end game scene
@@ -86,6 +113,42 @@ public class GameLogic : MonoBehaviour
   public void LoadWinGame()
   {
     SceneManager.LoadScene("win_scene");
+  }
+
+  // load world scene
+  public void LoadWorld(int world_id)
+  {
+    // load world
+    if (SceneManager.GetActiveScene().name == main_scene)
+    {
+      //SceneManager.LoadScene(WorldId2Scene(world_id));
+      GameObject.Find("WorldClock").GetComponent<WorldClock>().ShowWorldClock(false);
+      SceneManager.LoadScene(world_scene[world_id]);
+    }
+
+    // go back to watch main scene
+    else
+    {
+      SceneManager.LoadScene(main_scene);
+      spawn_player_door = world_id + 1;
+      //GameObject.Find("WorldClock").GetComponent<WorldClock>().ShowWorldClock(true);
+    }
+  }
+
+  // WorldId to World Scene Name
+  private string WorldId2Scene(int world_id)
+  {
+    switch (world_id)
+    {
+      case 0: 
+        GameObject.Find("WorldClock").GetComponent<WorldClock>().ShowWorldClock(true);
+        return "clock_scene";
+
+      case 1: 
+        GameObject.Find("WorldClock").GetComponent<WorldClock>().ShowWorldClock(false);
+        return "world_scene";
+    }
+    return "world_scene";
   }
 
 }
