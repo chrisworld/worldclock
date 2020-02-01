@@ -42,6 +42,9 @@ public class PlayerControllerAdventure : PlayerController
         is_facing = Faces.Streight;
         FrontRenderer.enabled = true;
         SideRenderer.enabled = false;
+
+        // on ground always true
+        on_ground = true;
     }
 
     //private void FixedUpdate()
@@ -81,14 +84,18 @@ public class PlayerControllerAdventure : PlayerController
                 SmallSizeCollider.enabled = false;
             }
 
-            Vector3 targetVelocity = new Vector2(move_left_right * MovementSpeed, player_physics_body.velocity.y);
+            // here is the movement
+            Vector3 targetVelocity = new Vector2(move_left_right * MovementSpeed, move_up_down * MovementSpeed);
             player_physics_body.velocity = Vector3.SmoothDamp(player_physics_body.velocity, targetVelocity, ref previous_velocity, MovementSmoothing);
 
+            // left right renderer
             if (move_left_right == 0.0f && is_facing != Faces.Streight)
             {
                 FrontRenderer.enabled = true;
                 SideRenderer.enabled = false;
             }
+
+            // up down renderer
             else
             {
                 FrontRenderer.enabled = false;
@@ -110,8 +117,7 @@ public class PlayerControllerAdventure : PlayerController
 
         if (on_ground && jump)
         {
-            on_ground = false;
-            player_physics_body.AddForce(new Vector2(0f, JumpStrenght));
+            // not implemented
         }
     }
 }
