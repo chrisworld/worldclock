@@ -1,0 +1,1 @@
+D:\GameDev\worldclock\Assets\Scripts\obj\Debug\worldclock.csprojResolveAssemblyReference.cache

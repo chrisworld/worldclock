@@ -20,6 +20,8 @@ public abstract class PlayerController : MonoBehaviour
     protected float MovementSmoothing = 0.1f;
 
     protected Rigidbody2D player_physics_body;
+
+    [SerializeField]
     protected bool on_ground;
 
     protected Vector3 previous_velocity;

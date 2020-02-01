@@ -17,53 +17,47 @@ public class PlayerControllerSideScrawler : PlayerController
     protected SpriteRenderer SideRenderer;
     protected Animator SideAnimator;
 
-    protected bool can_standup;
+    private CircleCollider2D feet_collider;
+    private CircleCollider2D head_collider;
 
     private void Awake()
     {
         base.Awake();
-        var feet_collider = FeetCollider.GetComponent<OnCollisionTrigger>();
-        feet_collider.DoEnter += FeetDoEnter;
-        feet_collider.DoExit += FeetDoExit;
-        var head_collider = HeadCollider.GetComponent<OnCollisionTrigger>();
-        head_collider.DoEnter += HeadDoEnter;
-        head_collider.DoExit += HeadDoExit;
-        can_standup = true;
-
         is_facing = Faces.Right;
         SideRenderer.enabled = true;
         SideAnimator = SideRenderer.GetComponent<Animator>();
+
+        feet_collider = FeetCollider.GetComponent<CircleCollider2D>();
+        head_collider = HeadCollider.GetComponent<CircleCollider2D>();
     }
 
-    private void FeetDoEnter(Collider2D col)
+    private void FixedUpdate()
     {
-        var new_val = (GroundMask == (GroundMask | (1 << col.gameObject.layer)) && col.gameObject != gameObject);
-        SideAnimator.SetBool("Is_Jumping", on_ground || !new_val);
-        on_ground = new_val;
-    }
-
-    private void FeetDoExit(Collider2D col)
-    {
-        on_ground = !(GroundMask == (GroundMask | (1 << col.gameObject.layer)) && col.gameObject != gameObject);
-    }
-
-    private void HeadDoEnter(Collider2D col)
-    {
-        Debug.Log(String.Format("HeadDoEnter"));
-        can_standup = !(GroundMask == (GroundMask | (1 << col.gameObject.layer)) && col.gameObject != gameObject);
-    }
-
-    private void HeadDoExit(Collider2D col)
-    {
-        Debug.Log(String.Format("HeadDoExit"));
-        can_standup = (GroundMask == (GroundMask | (1 << col.gameObject.layer)) && col.gameObject != gameObject);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(feet_collider.transform.position, feet_collider.radius);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (GroundMask == (GroundMask | (1 << colliders[i].gameObject.layer)))
+            {
+                on_ground = true;
+                SideAnimator.SetBool("Is_Jumping", false);
+                break;
+            }
+        }
     }
 
     public override void Move(float move_left_right, float move_up_down, bool crouch, bool jump)
     {
         if (on_ground && !crouch)
         {
-            crouch = !can_standup;
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(head_collider.transform.position, head_collider.radius);
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (GroundMask == (GroundMask | (1 << colliders[i].gameObject.layer)))
+                {
+                    crouch = true;
+                    break;
+                }
+            }
         }
 
         if (on_ground && crouch)

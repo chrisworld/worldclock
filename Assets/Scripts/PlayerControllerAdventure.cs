@@ -44,16 +44,16 @@ public class PlayerControllerAdventure : PlayerController
         SideRenderer.enabled = false;
     }
 
-    private void FixedUpdate()
-    {
-        Vector3 gcc = transform.position;
-        gcc.Set(gcc.x, gcc.y - ground_collide_pos, gcc.z);
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(gcc, ground_collide_radius, GroundMask);
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            on_ground = colliders[i].gameObject != gameObject;
-        }
-    }
+    //private void FixedUpdate()
+    //{
+    //    Vector3 gcc = transform.position;
+    //    gcc.Set(gcc.x, gcc.y - ground_collide_pos, gcc.z);
+    //    Collider2D[] colliders = Physics2D.OverlapCircleAll(gcc, ground_collide_radius, GroundMask);
+    //    for (int i = 0; i < colliders.Length; i++)
+    //    {
+    //        on_ground = colliders[i].gameObject != gameObject;
+    //    }
+    //}
 
     public override void Move(float move_left_right, float move_up_down, bool crouch, bool jump)
     {
