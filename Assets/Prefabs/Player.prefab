@@ -85,9 +85,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4a1e954c18e7b4594753227e2faea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpStrenght: 1800
+  JumpStrenght: 1000
   MovementSpeed: 500
-  CrouchSpeedModifier: 0.4
+  CrouchSpeedModifier: 0.05
   GroundMask:
     serializedVersion: 2
     m_Bits: 512
@@ -149,7 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 389255750055694411}
   - component: {fileID: 389255750055694410}
-  - component: {fileID: 389255750055694413}
+  - component: {fileID: 1050038212}
   m_Layer: 10
   m_Name: Feet
   m_TagString: Untagged
@@ -187,7 +187,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!114 &389255750055694413
+--- !u!114 &1050038212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,9 +196,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 389255750055694412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4ae9a0bd3e507d48b1c611128178fbc, type: 3}
+  m_Script: {fileID: 11500000, guid: 385110fcecb204043981d2d190214d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanClimb: 0
+  ClimbMask:
+    serializedVersion: 2
+    m_Bits: 4096
+  climb_count: 0
 --- !u!1 &389255750563196611
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 389255750637121102}
   - component: {fileID: 389255750637121089}
-  - component: {fileID: 389255750637121088}
+  - component: {fileID: 863654833}
   m_Layer: 10
   m_Name: Head
   m_TagString: Untagged
@@ -328,7 +333,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!114 &389255750637121088
+--- !u!114 &863654833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -337,9 +342,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 389255750637121091}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4ae9a0bd3e507d48b1c611128178fbc, type: 3}
+  m_Script: {fileID: 11500000, guid: 385110fcecb204043981d2d190214d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanClimb: 0
+  ClimbMask:
+    serializedVersion: 2
+    m_Bits: 4096
+  climb_count: 0
 --- !u!1 &389255750693367722
 GameObject:
   m_ObjectHideFlags: 0

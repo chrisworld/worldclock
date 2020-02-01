@@ -49,15 +49,8 @@ public class PlayerControllerSideScrawler : PlayerController
     {
         if (on_ground && !crouch)
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(head_collider.transform.position, head_collider.radius);
-            for (int i = 0; i < colliders.Length; i++)
-            {
-                if (GroundMask == (GroundMask | (1 << colliders[i].gameObject.layer)))
-                {
-                    crouch = true;
-                    break;
-                }
-            }
+            Collider2D collider = Physics2D.OverlapCircle(head_collider.transform.position, head_collider.radius, GroundMask);
+            crouch = collider != null;
         }
 
         if (on_ground && crouch)
@@ -73,7 +66,8 @@ public class PlayerControllerSideScrawler : PlayerController
         }
 
         Vector3 targetVelocity = new Vector2(move_left_right * MovementSpeed, player_physics_body.velocity.y);
-        player_physics_body.velocity = Vector3.SmoothDamp(player_physics_body.velocity, targetVelocity, ref previous_velocity, MovementSmoothing);
+        player_physics_body.velocity = Vector3.SmoothDamp(player_physics_body.velocity, targetVelocity, 
+            ref previous_velocity, MovementSmoothing);
 
         SideAnimator.SetBool("Is_Walking", Math.Abs(move_left_right) > 0.0001f);
 
@@ -95,6 +89,21 @@ public class PlayerControllerSideScrawler : PlayerController
             SideAnimator.SetBool("Is_Jumping", true);
             on_ground = false;
             player_physics_body.AddForce(new Vector2(0f, JumpStrenght));
+        }
+
+        if (Math.Abs(move_up_down) > 0)
+        {
+            var cd = FeetCollider.GetComponent<CanClimbBehaviour>();
+
+            if (cd.CanClimb)
+            {
+                Vector2 up = new Vector2(0, move_up_down * CrouchSpeedModifier * MovementSpeed);
+                player_physics_body.MovePosition(player_physics_body.position + up);
+
+                Collider2D collider = Physics2D.OverlapCircle(head_collider.transform.position, head_collider.radius, GroundMask);
+                if(collider != null)
+                    collider.isTrigger = true;
+            }
         }
     }
 }
