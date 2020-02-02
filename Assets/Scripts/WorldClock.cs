@@ -194,7 +194,6 @@ public class WorldClock : MonoBehaviour
             current_time = max_time_actual;
         }
         RotateClockHand();
-        Debug.Log(String.Format("rewind {0}", current_time));
     }
 
   // add repair time
