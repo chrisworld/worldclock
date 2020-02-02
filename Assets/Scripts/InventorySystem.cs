@@ -19,7 +19,7 @@ public class InventorySystem : MonoBehaviour
   private GameObject world_clock;
 
   // Start is called before the first frame update
-  void Start()
+  void Awake()
   {
     // init inventory array
     clock_inventory = new int[amount_repair_obj];
@@ -37,8 +37,10 @@ public class InventorySystem : MonoBehaviour
   }
 
   // reset all inventories
-  void ResetInventory()
-  {
+  public void ResetInventory()
+  { 
+    Debug.Log("Reset Inventory");
+    
     // reset clock inventory
     for(int ci = 0; ci < amount_repair_obj; ci++)
     {
@@ -48,7 +50,7 @@ public class InventorySystem : MonoBehaviour
     // reset world_iventory
     for(int wi = 0; wi < amount_repair_obj; wi++)
     {
-      world_inventory[wi] = 0;
+      world_inventory[wi] = 1;
     }
 
     // reset
@@ -100,5 +102,22 @@ public class InventorySystem : MonoBehaviour
   public int GetCarryItemId()
   {
     return carry_item_id;
+  }
+
+  // destroy allready collected inventory
+  public void DestroyCollectedItemsInWorld()
+  {
+    GameObject[] items = GameObject.FindGameObjectsWithTag("repair_item");
+
+    // run through each item
+    foreach(GameObject item in items)
+    {
+      int item_id = item.GetComponent<RepairItem>().item_id;
+      if(world_inventory[item_id] == 0)
+      {
+        Debug.Log("Destroy item wit id: " + item_id);
+        Destroy(item);
+      }
+    }
   }
 }

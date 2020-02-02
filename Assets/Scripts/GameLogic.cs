@@ -16,6 +16,9 @@ public class GameLogic : MonoBehaviour
   // spawn player
   private int spawn_player_door = 0;
 
+  // old scene for scene change
+  private int old_scene_idx = 0;
+
 
   // awake
   void Awake()
@@ -72,21 +75,19 @@ public class GameLogic : MonoBehaviour
     // spawn player to corresponding door position
     if (spawn_player_door != 0)
     {
-      // spawn
-      GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-      
-      if (players.Length == 1)
-      {
-        GameObject[] doors = GameObject.FindGameObjectsWithTag("world_door");
-        if (doors.Length >= spawn_player_door-1)
-        {
-          // set player pos to door
-          players[0].transform.position = doors[spawn_player_door-1].transform.position;
-          spawn_player_door = 0;
-          // show the clock
-          GameObject.Find("WorldClock").GetComponent<WorldClock>().ShowWorldClock(true);
-        }
-      }
+      SpawnLogic();
+    }
+
+    // Scene change
+    if (old_scene_idx != SceneManager.GetActiveScene().buildIndex)
+    {
+      Debug.Log("Scene changed to: " + SceneManager.GetActiveScene().name);
+
+      // update scene idx
+      old_scene_idx = SceneManager.GetActiveScene().buildIndex;
+
+      // revisit inventory to delete collected obj
+      GameObject.Find("InventorySystem").GetComponent<InventorySystem>().DestroyCollectedItemsInWorld();
     }
   }
 
@@ -120,12 +121,13 @@ public class GameLogic : MonoBehaviour
   // load world scene
   public void LoadWorld(int world_id)
   {
+
     // load world
     if (SceneManager.GetActiveScene().name == main_scene)
     {
       //SceneManager.LoadScene(WorldId2Scene(world_id));
-      GameObject.Find("WorldClock").GetComponent<WorldClock>().ShowWorldClock(false);
       SceneManager.LoadScene(world_scene[world_id]);
+      GameObject.Find("WorldClock").GetComponent<WorldClock>().ShowWorldClock(false);
 
       // play overworld theme
       GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayBackgroundMusic(1);
@@ -134,8 +136,11 @@ public class GameLogic : MonoBehaviour
     // go back to watch main scene
     else
     {
+      // load scene
       SceneManager.LoadScene(main_scene);
       spawn_player_door = world_id + 1;
+
+      // play worldclock theme
       GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayBackgroundMusic(0);
     }
   }
@@ -154,6 +159,35 @@ public class GameLogic : MonoBehaviour
         return "world_scene";
     }
     return "world_scene";
+  }
+
+  // Spawn Logic
+  private void SpawnLogic()
+  {
+    // spawn
+    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+    
+    if (players.Length == 1)
+    {
+      GameObject[] doors = GameObject.FindGameObjectsWithTag("world_door");
+      if (doors.Length >= spawn_player_door-1)
+      {
+        Debug.Log("spawn to door: " + spawn_player_door);
+
+        foreach(GameObject door in doors)
+        {
+          if(door.GetComponent<WorldDoor>().world_id == spawn_player_door-1)
+          {
+            // set player pos to door
+            players[0].transform.position = door.transform.position;
+            spawn_player_door = 0;
+            // show the clock
+            GameObject.Find("WorldClock").GetComponent<WorldClock>().ShowWorldClock(true);
+          }
+        }
+
+      }
+    }
   }
 
 }
