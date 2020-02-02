@@ -8,25 +8,37 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/clock_scene.unity
     guid: 8b9a34b75621ffe4989929088798b35a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/end_scene.unity
     guid: 943ebf6427524214a93fe57a19519bce
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/start_scene.unity
     guid: 778184e993490754599940db5bc24305
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/win_scene.unity
     guid: 0e1ae520c11438b4cad3537ec69a58f6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/world_scene.unity
     guid: cad3add081873cb4da310c7ff8228e72
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/World1.unity
-    guid: a46d417d96a6bfe41973a7c586c8c510
+    path: Assets/Scenes/World3.unity
+    guid: c4d1bc9e75e824f43b7fd17b90c2ce42
+  - enabled: 1
+    path: Assets/Scenes/WorldClockMain.unity
+    guid: 516e1f639a0b22842a5cb589332b6cbd
   - enabled: 1
     path: Assets/Scenes/World2.unity
-    guid: e84ec4f17bef940419ba20f6f53f28e9
+    guid: 0533060b447cb1949a1f68a82c54a674
+  - enabled: 1
+    path: Assets/Scenes/World1.unity
+    guid: e56c4be1fb5a44c428e93c821c7eaf77
   m_configObjects: {}
