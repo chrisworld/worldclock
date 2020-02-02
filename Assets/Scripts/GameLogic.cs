@@ -99,10 +99,6 @@ public class GameLogic : MonoBehaviour
 
   public void LoadNewGame()
   {
-    if (GameObject.Find("WorldClock"))
-    {
-      GameObject.Find("WorldClock").GetComponent<WorldClock>().NewGame();
-    }
     SceneManager.LoadScene(main_scene);
   }
 

@@ -39,6 +39,9 @@ public class WorldClock : MonoBehaviour
   // timer active
   private bool timer_active = true;
 
+  //
+  private bool start_screen_active;
+
   // awake
   void Awake()
   {
@@ -66,6 +69,7 @@ public class WorldClock : MonoBehaviour
   void Start()
   {
     // Overlays
+    StartScreen(true);
   }
 
   // Update is called once per frame
@@ -80,27 +84,46 @@ public class WorldClock : MonoBehaviour
 
      RotateClockHand();
 
-    // new game
+    // wait screens
     if (new_game)
     {
       if (current_time > end_screen_time)
       {
-        StartScreen();
+        StartScreen(true);
+        EndGame(false);
+        WinGame(false);
       }
     }
+
+    // normal play
     else
     {
-      // end game
+      // game over
       if (current_time >= max_time_end)
       {
-          EndGame();
-          current_time = 0;
+        EndGame(true);
       }
 
       // win condition
       if (max_time_actual >= max_time_end && current_time >= max_time_end)
       {
-        WinGame();
+        WinGame(true);
+      }
+
+      // start screen
+      if (start_screen_active)
+      {
+        // start new game
+        if (Input.anyKey)
+        {
+          // Overlays
+          StartScreen(false);
+          EndGame(false);
+          WinGame(false);
+
+          GameObject.Find("GameLogic").GetComponent<GameLogic>().LoadNewGame();
+          NewGame();
+        }
       }
     }
 
@@ -120,38 +143,57 @@ public class WorldClock : MonoBehaviour
   }
 
   // end game
-  private void EndGame()
+  private void EndGame(bool acti)
   {
-    Debug.Log("Game Over time stoped");
-    new_game = true;
-    current_time = 0;
+    Debug.Log("Game Over Screen active: " + acti);
     
     // Game Overlay
-    GameObject.Find("GameOverlay").GetComponent<GameOver>().SetGameOverlayActive(true);
+    GameObject.Find("GameOverlay").GetComponent<GameOver>().SetGameOverlayActive(acti);
 
-    //GameObject.Find("GameLogic").GetComponent<GameLogic>().LoadEndGame();
-
-    // reset inventory
-    GameObject.Find("InventorySystem").GetComponent<InventorySystem>().ResetInventory();
+    // Game Over condition
+    if (acti)
+    {
+      current_time = 0;
+    }
+    new_game = acti;
   }
 
   // win
-  private void WinGame()
+  private void WinGame(bool acti)
   {
-    Debug.Log("Won -> credits");
-    GameObject.Find("GameLogic").GetComponent<GameLogic>().LoadWinGame();
-    new_game = true;
-    // reset inventory
-    GameObject.Find("InventorySystem").GetComponent<InventorySystem>().ResetInventory();
+    Debug.Log("Win Screen active: " + acti);
+
+    // activate Overlay
+    GameObject.Find("WinOverlay").GetComponent<SpriteRenderer>().enabled = acti;
+
+    // wind condition
+    if (acti)
+    {
+      current_time = 0;
+    }
+    new_game = acti;
   }
 
   // go to start screen
-  private void StartScreen()
+  private void StartScreen(bool acti)
   {
-    Debug.Log("start screen");
-    GameObject.Find("GameLogic").GetComponent<GameLogic>().LoadStartScreen();
+    Debug.Log("start screen set: " + acti);
+    //GameObject.Find("GameLogic").GetComponent<GameLogic>().LoadStartScreen();
+
+    // activate Overlay
+    GameObject.Find("StartOverlay").GetComponent<SpriteRenderer>().enabled = acti;
+
+    start_screen_active = acti;
+
     new_game = false;
-    timer_active = false;
+    timer_active = !acti;
+
+    // reset inventory
+    if (acti)
+    {
+      GameObject.Find("InventorySystem").GetComponent<InventorySystem>().ResetInventory();
+      current_time = 0;
+    }
   }
 
   // new game

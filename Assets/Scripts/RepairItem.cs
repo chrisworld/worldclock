@@ -20,6 +20,7 @@ public class RepairItem : MonoBehaviour
       if (GameObject.Find("InventorySystem").GetComponent<InventorySystem>().TakeItemFromWorld(item_id))
       {
         Debug.Log("Player picked up item with id: " + item_id);
+        GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayPickUpSound();
         
         // Destroy object
         Destroy(this.gameObject);
