@@ -16,11 +16,15 @@ public class UnstablePlatformBehaviour : MonoBehaviour
     private Rigidbody2D physics;
     private Collider2D  collidor;
 
+    [SerializeField]
     private float SecondsLeftToBreakdown;
+    [SerializeField]
     private float SecondsLeftToVanisch;
+    [SerializeField]
     private float SecondsLeftToRestore;
+    [SerializeField]
     private bool PlayerStepTriggered;
-
+    [SerializeField]
     private Vector3 OriginalPosition;
 
     private void Awake()
@@ -35,9 +39,10 @@ public class UnstablePlatformBehaviour : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D col)
-    {;
+    {
         PlayerController pc = col.gameObject.GetComponent<PlayerController>();
-        PlayerStepTriggered = pc != null;
+        if(pc != null)
+            PlayerStepTriggered = true;
     }
 
     private void FixedUpdate()
