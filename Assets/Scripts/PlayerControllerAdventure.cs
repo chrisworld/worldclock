@@ -48,6 +48,7 @@ public class PlayerControllerAdventure : PlayerController
 
         is_facing = Faces.Streight;
 
+        FrontRenderer.enabled = true;
         FrontAnimator = this.GetComponentsInChildren<Animator>()[0];
 
         // on ground always true
@@ -106,27 +107,10 @@ public class PlayerControllerAdventure : PlayerController
             Vector3 targetVelocity = new Vector2(move_left_right * MovementSpeed, move_up_down * MovementSpeed);
             player_physics_body.velocity = Vector3.SmoothDamp(player_physics_body.velocity, targetVelocity, ref previous_velocity, MovementSmoothing);
 
-            // // no left right
-            // if (move_left_right == 0.0f && is_facing != Faces.Streight)
-            // {
-            //     FrontRenderer.enabled = true;
-            //     SideRenderer.enabled = false;
-            // }
-
-            // movement renderer
-            // else
-            // {
-            //     FrontRenderer.enabled = false;
-            //     SideRenderer.enabled = true;
-            
-            //Vector3 theScale = transform.localScale;
 
             // idle
             if (move_left_right == 0 && move_up_down == 0)
             {
-                // SideRenderer.enabled = true;
-                // FrontRenderer.enabled = false;
-                // BackRenderer.enabled = false;
                 FrontAnimator.SetBool("Walking", false);
             }
 
@@ -134,10 +118,7 @@ public class PlayerControllerAdventure : PlayerController
             else if (move_left_right > 0 && is_facing != Faces.Right)
             {
                 is_facing = Faces.Right;
-                // SideRenderer.enabled = true;
-                // FrontRenderer.enabled = false;
-                // BackRenderer.enabled = false;
-                //theScale.x *= -1;
+ 
                 FrontAnimator.SetBool("Walking", true);
                 FrontAnimator.SetTrigger("Right");
             }
@@ -146,10 +127,6 @@ public class PlayerControllerAdventure : PlayerController
             else if (move_left_right < 0 && is_facing != Faces.Left)
             {
                 is_facing = Faces.Left;
-                // SideRenderer.enabled = true;
-                // FrontRenderer.enabled = false;
-                // BackRenderer.enabled = false;
-                //theScale.x *= -1;
                 FrontAnimator.SetBool("Walking", true);
                 FrontAnimator.SetTrigger("Left");
             }
@@ -158,9 +135,6 @@ public class PlayerControllerAdventure : PlayerController
             else if (move_up_down > 0 && is_facing != Faces.Up)
             {
                 is_facing = Faces.Up;
-                // SideRenderer.enabled = false;
-                // FrontRenderer.enabled = false;
-                // BackRenderer.enabled = true;
                 FrontAnimator.SetBool("Walking", true);
                 FrontAnimator.SetTrigger("Up");
             }
@@ -169,16 +143,10 @@ public class PlayerControllerAdventure : PlayerController
             else if (move_up_down < 0 && is_facing != Faces.Down)
             {
                 is_facing = Faces.Down;
-                // SideRenderer.enabled = false;
-                // FrontRenderer.enabled = true;
-                // BackRenderer.enabled = false;
                 FrontAnimator.SetBool("Walking", true);
                 FrontAnimator.SetTrigger("Down");
             }
 
-
-            //transform.localScale = theScale;
-            //}
         }
 
         if (on_ground && jump)

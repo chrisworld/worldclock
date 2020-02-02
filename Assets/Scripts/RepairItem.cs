@@ -19,7 +19,7 @@ public class RepairItem : MonoBehaviour
       // Take from world then destroy if possible
       if (GameObject.Find("InventorySystem").GetComponent<InventorySystem>().TakeItemFromWorld(item_id))
       {
-        Debug.Log("Player picked up item");
+        Debug.Log("Player picked up item with id: " + item_id);
         
         // Destroy object
         Destroy(this.gameObject);

@@ -74,7 +74,7 @@ public class WorldClock : MonoBehaviour
 
      RotateClockHand();
 
-        // new game
+    // new game
     if (new_game)
     {
       if (current_time > end_screen_time)
@@ -116,9 +116,16 @@ public class WorldClock : MonoBehaviour
   // end game
   private void EndGame()
   {
-    Debug.Log("end game");
-    GameObject.Find("GameLogic").GetComponent<GameLogic>().LoadEndGame();
+    Debug.Log("Game Over time stoped");
     new_game = true;
+    
+    // Game Overlay
+    GameObject.Find("GameOverlay").GetComponent<GameOver>().SetGameOverlayActive(true);
+
+    //GameObject.Find("GameLogic").GetComponent<GameLogic>().LoadEndGame();
+
+    // reset inventory
+    GameObject.Find("InventorySystem").GetComponent<InventorySystem>().ResetInventory();
   }
 
   // win
@@ -127,6 +134,8 @@ public class WorldClock : MonoBehaviour
     Debug.Log("Won -> credits");
     GameObject.Find("GameLogic").GetComponent<GameLogic>().LoadWinGame();
     new_game = true;
+    // reset inventory
+    GameObject.Find("InventorySystem").GetComponent<InventorySystem>().ResetInventory();
   }
 
   // go to start screen
@@ -161,8 +170,11 @@ public class WorldClock : MonoBehaviour
   // pendulum movement
   private void CalcPendulumAngle()
   {
-    // update rotation
-    Pendulum.transform.localRotation = Quaternion.Euler(0, 0, 20f * Mathf.Cos(pendulum_speed * current_time));
+    if (!new_game)
+    {
+      // update rotation
+      Pendulum.transform.localRotation = Quaternion.Euler(0, 0, 20f * Mathf.Cos(pendulum_speed * current_time));
+    }
   }
 
     // rewind
@@ -193,10 +205,13 @@ public class WorldClock : MonoBehaviour
     this.gameObject.transform.GetChild(0).gameObject.SetActive(activate);
   }
 
-    private void RotateClockHand()
+  private void RotateClockHand()
+  {
+    if (!new_game)
     {
-        float angle = -rot_step * current_time;
-        float remain = angle % DiskreteTickModifier;
-        ClockHand.transform.localRotation = Quaternion.Euler(0, 0, angle-remain);
+      float angle = -rot_step * current_time;
+      float remain = angle % DiskreteTickModifier;
+      ClockHand.transform.localRotation = Quaternion.Euler(0, 0, angle-remain);
     }
+  }
 }
