@@ -248,6 +248,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 813702014, guid: 914acd8c870d77c479ea814335e8d079, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 813702014, guid: 914acd8c870d77c479ea814335e8d079, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 813702015, guid: 914acd8c870d77c479ea814335e8d079, type: 3}
+      propertyPath: FullSizeCollider
+      value: 
+      objectReference: {fileID: 1415220371}
     - target: {fileID: 4647438161921788794, guid: 914acd8c870d77c479ea814335e8d079,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1946,6 +1958,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!61 &1415220371 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 813702013, guid: 914acd8c870d77c479ea814335e8d079,
+    type: 3}
+  m_PrefabInstance: {fileID: 813702010}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1572499408
 GameObject:
   m_ObjectHideFlags: 0

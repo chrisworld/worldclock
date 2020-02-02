@@ -118,6 +118,7 @@ public class WorldClock : MonoBehaviour
   {
     Debug.Log("Game Over time stoped");
     new_game = true;
+    current_time = 0;
     
     // Game Overlay
     GameObject.Find("GameOverlay").GetComponent<GameOver>().SetGameOverlayActive(true);
