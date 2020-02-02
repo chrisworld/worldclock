@@ -73,15 +73,15 @@ public class GameLogic : MonoBehaviour
     if (spawn_player_door != 0)
     {
       // spawn
-      GameObject player = GameObject.FindGameObjectsWithTag("Player")[0];
+      GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
       
-      if (player != null)
+      if (players.Length == 1)
       {
         GameObject[] doors = GameObject.FindGameObjectsWithTag("world_door");
         if (doors.Length >= spawn_player_door-1)
         {
           // set player pos to door
-          player.transform.position = doors[spawn_player_door-1].transform.position;
+          players[0].transform.position = doors[spawn_player_door-1].transform.position;
           spawn_player_door = 0;
           // show the clock
           GameObject.Find("WorldClock").GetComponent<WorldClock>().ShowWorldClock(true);
