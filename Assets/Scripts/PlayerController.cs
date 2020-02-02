@@ -10,6 +10,11 @@ public abstract class PlayerController : MonoBehaviour
     protected float JumpStrenght = 0.0f;
     [SerializeField]
     protected float MovementSpeed = 400.0f;
+
+    // footstep sound time
+    [SerializeField]
+    protected float footstep_acti_time = 0.25f;
+
     [Range(0, 1)]
     [SerializeField]
     protected float CrouchSpeedModifier = 0.4f;
@@ -30,7 +35,9 @@ public abstract class PlayerController : MonoBehaviour
     {
         Right,
         Streight,
-        Left
+        Left,
+        Up,
+        Down
     }
 
     protected Faces is_facing;

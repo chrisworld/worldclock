@@ -147,13 +147,16 @@ public class WorldClock : MonoBehaviour
     new_game = false;
     timer_active = true;
 
+    // show world clock
+    ShowWorldClock(true);
+
     // init max time
     max_time_actual = add_repair_time * amount_of_repairs;
     Debug.Log(String.Format("max_time_actual {0}", max_time_actual));
     current_time = max_time_actual;
 
-      RotateClockHand();
-    }
+    RotateClockHand();
+  }
 
   // pendulum movement
   private void CalcPendulumAngle()

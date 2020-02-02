@@ -30,6 +30,8 @@ public class PlayerControllerSideScrawler : PlayerController
     private CanClimbBehaviour can_climb;
     private float climb_change_timer;
 
+    private float footstep_time;
+
     private void Awake()
     {
         base.Awake();
@@ -40,6 +42,8 @@ public class PlayerControllerSideScrawler : PlayerController
         feet_collider = FeetCollider.GetComponent<CircleCollider2D>();
         head_collider = HeadCollider.GetComponent<CircleCollider2D>();
         can_climb     = FeetCollider.GetComponent<CanClimbBehaviour>();
+
+        footstep_time = 0;
     }
 
     private void FixedUpdate()
@@ -83,6 +87,13 @@ public class PlayerControllerSideScrawler : PlayerController
 
         SideAnimator.SetBool("Is_Walking", Math.Abs(move_left_right) > 0.0001f);
 
+        // general movement
+        if (move_left_right != 0)
+        {
+            // play footstep sound
+            FootstepSoundLogic(crouch);
+        }
+
         Vector3 theScale = transform.localScale;
         if (move_left_right > 0 && is_facing != Faces.Right)
         {
@@ -115,6 +126,29 @@ public class PlayerControllerSideScrawler : PlayerController
         {
             LadderCollider.isTrigger = false;
             SideAnimator.SetBool("Is_Climbing", false);            
+        }
+    }
+
+    void FootstepSoundLogic(bool crouch)
+    {
+        // play footstep sound
+        footstep_time += Time.deltaTime;
+
+        if (!crouch)
+        {
+            if (footstep_time >= footstep_acti_time)
+            {
+                GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayFootstepSound();
+                footstep_time = 0;
+            }
+        }
+        else
+        {
+            if (footstep_time >= footstep_acti_time * 2)
+            {
+                GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayFootstepSound();
+                footstep_time = 0;
+            }
         }
     }
 }

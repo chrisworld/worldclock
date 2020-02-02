@@ -15,8 +15,9 @@ public class Inserter : MonoBehaviour
       // Take from world then destroy if possible
       if (GameObject.Find("InventorySystem").GetComponent<InventorySystem>().PlaceItemIntoClock())
       {
-        // Destroy object
+        // insert successfull
         Debug.Log("inserted item!");
+        GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayRepairSound();
       }
       
     }

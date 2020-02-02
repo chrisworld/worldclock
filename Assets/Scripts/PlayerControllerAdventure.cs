@@ -8,7 +8,10 @@ public class PlayerControllerAdventure : PlayerController
     [SerializeField]
     private SpriteRenderer FrontRenderer = null;
     [SerializeField]
+    private SpriteRenderer BackRenderer = null;
+    [SerializeField]
     private SpriteRenderer SideRenderer = null;
+
 
     private Animator FrontAnimator;
     private Animator SideAnimator;
@@ -22,8 +25,10 @@ public class PlayerControllerAdventure : PlayerController
 
     [SerializeField]
     private Collider2D FullSizeCollider = null;
-    [SerializeField]
-    private Collider2D SmallSizeCollider = null;
+
+    // small size controller for future use
+    //[SerializeField]
+    //private Collider2D SmallSizeCollider = null;
 
     private float ground_collide_radius;
     private float head_collide_radius;
@@ -47,7 +52,6 @@ public class PlayerControllerAdventure : PlayerController
 
         // on ground always true
         on_ground = true;
-
         footstep_time = 0;
     }
 
@@ -80,51 +84,84 @@ public class PlayerControllerAdventure : PlayerController
             {
                 move_left_right *= CrouchSpeedModifier;
                 FullSizeCollider.enabled = false;
-                SmallSizeCollider.enabled = true;
+                //SmallSizeCollider.enabled = true;
 
                 // play footstep sound
-                footstep_time += Time.deltaTime;
-                if (footstep_time >= 0.5)
-                {
-                    GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayFootstepCrouchSound();
-                    footstep_time = 0;
-                }
+                FootstepSoundLogic(crouch);
             }
             else
             {
                 FullSizeCollider.enabled = true;
-                SmallSizeCollider.enabled = false;
+                //SmallSizeCollider.enabled = false;
+            }
+
+            // movement in any case
+            if (move_left_right != 0 || move_up_down != 0)
+            {
+                // play footstep sound
+                FootstepSoundLogic(crouch);
             }
 
             // here is the movement
             Vector3 targetVelocity = new Vector2(move_left_right * MovementSpeed, move_up_down * MovementSpeed);
             player_physics_body.velocity = Vector3.SmoothDamp(player_physics_body.velocity, targetVelocity, ref previous_velocity, MovementSmoothing);
 
-            // left right renderer
-            if (move_left_right == 0.0f && is_facing != Faces.Streight)
+            // // no left right
+            // if (move_left_right == 0.0f && is_facing != Faces.Streight)
+            // {
+            //     FrontRenderer.enabled = true;
+            //     SideRenderer.enabled = false;
+            // }
+
+            // movement renderer
+            // else
+            // {
+            //     FrontRenderer.enabled = false;
+            //     SideRenderer.enabled = true;
+            
+            Vector3 theScale = transform.localScale;
+
+            // movement right
+            if (move_left_right > 0 && is_facing != Faces.Right)
             {
-                FrontRenderer.enabled = true;
-                SideRenderer.enabled = false;
+                is_facing = Faces.Right;
+                SideRenderer.enabled = true;
+                FrontRenderer.enabled = false;
+                BackRenderer.enabled = false;
+                theScale.x *= -1;
             }
 
-            // up down renderer
-            else
+            // movement left
+            else if (move_left_right < 0 && is_facing != Faces.Left)
             {
-                FrontRenderer.enabled = false;
+                is_facing = Faces.Left;
                 SideRenderer.enabled = true;
-                Vector3 theScale = transform.localScale;
-                if (move_left_right > 0 && is_facing != Faces.Right)
-                {
-                    is_facing = Faces.Right;
-                    theScale.x *= -1;
-                }
-                else if (move_left_right < 0 && is_facing != Faces.Left)
-                {
-                    is_facing = Faces.Left;
-                    theScale.x *= -1;
-                }
-                transform.localScale = theScale;
+                FrontRenderer.enabled = false;
+                BackRenderer.enabled = false;
+                theScale.x *= -1;
             }
+
+            // movement up
+            else if (move_up_down > 0 && is_facing != Faces.Up)
+            {
+                is_facing = Faces.Up;
+                SideRenderer.enabled = false;
+                FrontRenderer.enabled = false;
+                BackRenderer.enabled = true;
+            }
+
+            // movement down
+            else if (move_up_down < 0 && is_facing != Faces.Down)
+            {
+                is_facing = Faces.Down;
+                SideRenderer.enabled = false;
+                FrontRenderer.enabled = true;
+                BackRenderer.enabled = false;
+            }
+
+
+            transform.localScale = theScale;
+            //}
         }
 
         if (on_ground && jump)
@@ -132,4 +169,28 @@ public class PlayerControllerAdventure : PlayerController
             // not implemented
         }
     }
+
+    void FootstepSoundLogic(bool crouch)
+    {
+        // play footstep sound
+        footstep_time += Time.deltaTime;
+
+        if (!crouch)
+        {
+            if (footstep_time >= footstep_acti_time)
+            {
+                GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayFootstepAdventure();
+                footstep_time = 0;
+            }
+        }
+        else
+        {
+            if (footstep_time >= footstep_acti_time * 2)
+            {
+                GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayFootstepAdventure();
+                footstep_time = 0;
+            }
+        }
+    }
+
 }

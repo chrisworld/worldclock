@@ -20,6 +20,9 @@ public class Rewinder : MonoBehaviour
         {
             PlayerInRewindTrigger = true;
             RewindAnimator.SetBool("Is_Rewinded", true);
+            
+            // play sound
+            GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayRewindSound();
         }
     }
     void OnTriggerExit2D(Collider2D col)
@@ -29,6 +32,9 @@ public class Rewinder : MonoBehaviour
         {
             PlayerInRewindTrigger = false;
             RewindAnimator.SetBool("Is_Rewinded", false);
+
+            // play sound
+            GameObject.Find("SoundManager").GetComponent<SoundManager>().StopRewindSound();
         }
     }
 
