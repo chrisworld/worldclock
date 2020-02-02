@@ -72,7 +72,7 @@ MonoBehaviour:
   FrontRenderer: {fileID: 4647438162120096244}
   FeetColliderRadius: 0.5
   HeadColliderRadius: 0.5
-  FullSizeCollider: {fileID: 0}
+  FullSizeCollider: {fileID: 813702013}
 --- !u!50 &813702014
 Rigidbody2D:
   serializedVersion: 4
@@ -87,13 +87,13 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &813702013
 BoxCollider2D:
   m_ObjectHideFlags: 0
