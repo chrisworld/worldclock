@@ -60,7 +60,13 @@ public class WorldClock : MonoBehaviour
     // rotation step each secod
     rot_step = 360 / max_time_end;
      NewGame();
-    }
+  }
+
+  // Start
+  void Start()
+  {
+    // Overlays
+  }
 
   // Update is called once per frame
   void Update()
