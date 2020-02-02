@@ -279,6 +279,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7dd712c35ff3904faeef287f0d2abad, type: 3}
+--- !u!58 &1387390537 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 3771056527037436626, guid: 815c1a4f846175f4e9dfa85c8254f2dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1964372212}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1914098989
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +404,7 @@ PrefabInstance:
         type: 3}
       propertyPath: LadderCollider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1387390537}
     - target: {fileID: 3771056527240682836, guid: 815c1a4f846175f4e9dfa85c8254f2dd,
         type: 3}
       propertyPath: m_Name
@@ -669,7 +675,7 @@ PrefabInstance:
     - target: {fileID: 5344820338259627417, guid: 93c096a89a58b124ea474c92b9953b07,
         type: 3}
       propertyPath: max_time_end
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93c096a89a58b124ea474c92b9953b07, type: 3}
