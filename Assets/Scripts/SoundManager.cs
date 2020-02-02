@@ -22,6 +22,14 @@ public class SoundManager : MonoBehaviour
   public AudioSource footsteps;
   public AudioSource rewind;
   public AudioSource repair;
+  public AudioSource pick_up;
+
+  // play door sound
+  public void PlayPickUpSound()
+  {
+    pick_up.pitch = 1.0f + Random.Range(-0.1f, 0.1f);
+    pick_up.Play(0);
+  }
 
   // Background Soud
   public void PlayBackgroundMusic(int back_id)
