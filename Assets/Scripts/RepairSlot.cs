@@ -4,31 +4,32 @@ using UnityEngine;
 
 public class RepairSlot : MonoBehaviour
 {
-  // set slot id
-  public int slot_id;
+    // set slot id
+    public int slot_id;
 
-  // repair flag
-  private bool is_repaired = false;
+    // repair flag
+    private bool is_repaired = false;
+    private Animator RepairAnimator;
 
-  // 
-  void Start()
-  {
-    is_repaired = false;
-  }
-
-  // repair slot
-  public void Repair()
-  {
-    
-    // repair
-    if (!is_repaired)
+    private void Awake()
     {
-      // TODO: change sprite
-      gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f);
-      is_repaired = true;
+        RepairAnimator = GetComponent<Animator>();
     }
 
-  }
+    // 
+    void Start()
+    {
+        is_repaired = false;
+    }
 
-
+    // repair slot
+    public void Repair()
+    {
+        // repair
+        if (!is_repaired)
+        {
+            RepairAnimator.SetTrigger("Repair");
+            is_repaired = true;
+        }
+    }
 }
