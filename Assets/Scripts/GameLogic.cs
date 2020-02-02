@@ -126,6 +126,9 @@ public class GameLogic : MonoBehaviour
       //SceneManager.LoadScene(WorldId2Scene(world_id));
       GameObject.Find("WorldClock").GetComponent<WorldClock>().ShowWorldClock(false);
       SceneManager.LoadScene(world_scene[world_id]);
+
+      // play overworld theme
+      GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayBackgroundMusic(1);
     }
 
     // go back to watch main scene
@@ -133,7 +136,7 @@ public class GameLogic : MonoBehaviour
     {
       SceneManager.LoadScene(main_scene);
       spawn_player_door = world_id + 1;
-      //GameObject.Find("WorldClock").GetComponent<WorldClock>().ShowWorldClock(true);
+      GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayBackgroundMusic(0);
     }
   }
 
