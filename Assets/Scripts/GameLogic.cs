@@ -36,6 +36,12 @@ public class GameLogic : MonoBehaviour
     DontDestroyOnLoad(this.gameObject);
   }
 
+  void Start()
+  {
+    // deactivate mouse
+    Cursor.visible = false;
+  }
+
   // update
   void Update()
   {

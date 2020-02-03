@@ -1047,7 +1047,7 @@ MonoBehaviour:
   ClockHand: {fileID: 5344820338480291838}
   Pendulum: {fileID: 5344820338659997018}
   amount_of_repairs: 5
-  max_time_end: 242
+  max_time_end: 240
   end_screen_time: 3
   pendulum_speed: 1.5
 --- !u!1 &5344820338480291838

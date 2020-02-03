@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpStrenght: 0
-  MovementSpeed: 280
+  MovementSpeed: 200
   footstep_acti_time: 0.25
   CrouchSpeedModifier: 0.4
   GroundMask:

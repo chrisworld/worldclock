@@ -121,7 +121,7 @@ public class WorldClock : MonoBehaviour
       }
 
       // win condition
-      else if (max_time_actual == 0 && current_time <= 0.1)
+      else if (max_time_actual <= 0.5 && current_time <= 0.1)
       {
         WinGame(true);
 
