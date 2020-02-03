@@ -5,9 +5,9 @@ using UnityEngine;
 public class Inserter : MonoBehaviour
 {
     [SerializeField]
-    private Sprite DoorClosed;
+    private Sprite DoorClosed = null;
     [SerializeField]
-    private Sprite DoorOpend;
+    private Sprite DoorOpend = null;
 
     private SpriteRenderer RepairBoxRenderer;
 

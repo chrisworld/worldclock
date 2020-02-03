@@ -9,6 +9,7 @@ TagManager:
   - world_door
   - repair_item
   - game_over
+  - clock_slot
   layers:
   - Default
   - TransparentFX

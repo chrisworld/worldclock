@@ -62,7 +62,7 @@ public class WorldClock : MonoBehaviour
 
     // rotation step each secod
     rot_step = 360 / max_time_end;
-     NewGame();
+    NewGame();
   }
 
   // Start
@@ -82,7 +82,7 @@ public class WorldClock : MonoBehaviour
       CalcPendulumAngle();
     }
 
-     RotateClockHand();
+    RotateClockHand();
 
     // wait screens
     if (new_game)
@@ -98,18 +98,6 @@ public class WorldClock : MonoBehaviour
     // normal play
     else
     {
-      // game over
-      if (current_time >= max_time_end)
-      {
-        EndGame(true);
-      }
-
-      // win condition
-      if (max_time_actual >= max_time_end && current_time >= max_time_end)
-      {
-        WinGame(true);
-      }
-
       // start screen
       if (start_screen_active)
       {
@@ -124,6 +112,24 @@ public class WorldClock : MonoBehaviour
           GameObject.Find("GameLogic").GetComponent<GameLogic>().LoadNewGame();
           NewGame();
         }
+      }
+
+      // game over
+      else if (current_time >= max_time_end)
+      {
+        EndGame(true);
+      }
+
+      // win condition
+      else if (max_time_actual == 0 && current_time <= 0.1)
+      {
+        WinGame(true);
+
+        // play repair sound
+        GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayRepairSound();
+
+        // stop rewinding
+        GameObject.Find("Rewinder").GetComponent<Rewinder>().StopRewind();
       }
     }
 
@@ -144,11 +150,9 @@ public class WorldClock : MonoBehaviour
 
   // end game
   private void EndGame(bool acti)
-  {
-    Debug.Log("Game Over Screen active: " + acti);
-    
+  {    
     // Game Overlay
-    GameObject.Find("GameOverlay").GetComponent<GameOver>().SetGameOverlayActive(acti);
+    GameObject.Find("Overlays").GetComponent<GameOver>().SetGameOverlayActive(acti);
 
     // Game Over condition
     if (acti)
@@ -161,10 +165,8 @@ public class WorldClock : MonoBehaviour
   // win
   private void WinGame(bool acti)
   {
-    Debug.Log("Win Screen active: " + acti);
-
     // activate Overlay
-    GameObject.Find("WinOverlay").GetComponent<SpriteRenderer>().enabled = acti;
+    GameObject.Find("Overlays").GetComponent<GameOver>().SetWinOverlayActive(acti);
 
     // wind condition
     if (acti)
@@ -177,11 +179,8 @@ public class WorldClock : MonoBehaviour
   // go to start screen
   private void StartScreen(bool acti)
   {
-    Debug.Log("start screen set: " + acti);
-    //GameObject.Find("GameLogic").GetComponent<GameLogic>().LoadStartScreen();
-
     // activate Overlay
-    GameObject.Find("StartOverlay").GetComponent<SpriteRenderer>().enabled = acti;
+    GameObject.Find("Overlays").GetComponent<GameOver>().SetStartOverlayActive(acti);
 
     start_screen_active = acti;
 

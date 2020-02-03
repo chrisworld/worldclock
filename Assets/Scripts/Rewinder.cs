@@ -30,13 +30,17 @@ public class Rewinder : MonoBehaviour
         PlayerController pc = col.gameObject.GetComponent<PlayerController>();
         if (pc != null)
         {
-            PlayerInRewindTrigger = false;
-            RewindAnimator.SetBool("Is_Rewinded", false);
-
-            // play sound
-            GameObject.Find("SoundManager").GetComponent<SoundManager>().StopRewindSound();
+            StopRewind();
         }
     }
+
+    public void StopRewind()
+    {
+        PlayerInRewindTrigger = false;
+        RewindAnimator.SetBool("Is_Rewinded", false);
+        // stop sound
+        GameObject.Find("SoundManager").GetComponent<SoundManager>().StopRewindSound();
+    } 
 
     private void FixedUpdate()
     {

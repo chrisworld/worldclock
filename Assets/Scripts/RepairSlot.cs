@@ -16,30 +16,6 @@ public class RepairSlot : MonoBehaviour
         RepairAnimator = GetComponent<Animator>();
     }
 
-    // 
-    void Start()
-    { 
-      // get repaied from inventary
-      int[] clock_slots = GameObject.Find("InventorySystem").GetComponent<InventorySystem>().clock_inventory;
-
-      // int i = 0;
-      // foreach(int slot in clock_slots)
-      // {
-      //   if (slot_id == i)
-      //   {
-      //     if (slot == 1)
-      //     {
-      //       is_repaired = true;
-      //     }
-      //     else
-      //     {
-      //       is_repaired = false;
-      //     }
-      //   }
-      //   i++;
-      // }
-    }
-
     // repair slot
     public void Repair()
     {
@@ -56,7 +32,7 @@ public class RepairSlot : MonoBehaviour
     {
       if (is_repaired)
       {
-        
+        RepairAnimator.SetTrigger("Repair");
       }
     }
 }

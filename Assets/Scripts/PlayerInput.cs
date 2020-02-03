@@ -14,6 +14,8 @@ public class PlayerInput : MonoBehaviour
     private bool crouch = false;
     private bool jump = false;
 
+    private bool freeze = false;
+
     private void Update()
     {
         move_left_right = Input.GetAxisRaw("Horizontal");
@@ -26,7 +28,20 @@ public class PlayerInput : MonoBehaviour
 
     private void FixedUpdate()
     {
-        player_controler.Move(move_left_right * Time.fixedDeltaTime, move_up_down * Time.fixedDeltaTime, crouch, jump);
-        jump = false;
+        if (freeze)
+        {
+            player_controler.Move(0, 0, crouch, jump);
+        }
+        else
+        {
+            player_controler.Move(move_left_right * Time.fixedDeltaTime, move_up_down * Time.fixedDeltaTime, crouch, jump);
+            jump = false;  
+        }
+
+    }
+
+    public void SetFreeze(bool acti)
+    {
+        freeze = acti;
     }
 }

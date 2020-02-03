@@ -32,7 +32,7 @@ public class PlayerControllerSideScrawler : PlayerController
 
     private float footstep_time;
 
-    private void Awake()
+    new private void Awake()
     {
         base.Awake();
         is_facing = Faces.Right;
